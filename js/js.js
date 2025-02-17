@@ -54,7 +54,7 @@ else
     locale='[EN]';  // The locale was found
 
 // Функция для отправки асинхронного запроса по https api с обработкой его результата
-function newApi(m,u,b,vars,index){ // Параметры: метод, адрес, действие - ветка switch, параметры, ID целевого элемента
+function newApi(m,u,b,vars,...params){ // Параметры: метод, адрес, действие - ветка switch, параметры, ID целевого элемента
     vars=vars||''; // По умолчанию список параметров пуст
     var json,obj=new XMLHttpRequest(); // Объявляем переменную под JSON и API по HTTPS
     obj.open(m,'/'+db+'/'+u,true); // Открываем асинхронное соединение заданным методом по нужному адресу
@@ -67,15 +67,20 @@ function newApi(m,u,b,vars,index){ // Параметры: метод, адрес
         }
     $('#warn').html('').addClass('hidden'); // Очищаем окно предупреждения от прежних результатов
     obj.onload=function(e){ // Когда запрос вернет результат - сработает эта функция
-        try{ // в this.responseText лежит ответ от сервера
-            json=JSON.parse(this.responseText); // Пытаемся разобрать ответ как JSON
+        try{ // в obj.responseText лежит ответ от сервера
+            json=JSON.parse(obj.responseText); // Пытаемся разобрать ответ как JSON
         }
         catch(e){ // Если произошла ошибка при разборе JSON
-            $('#warn').html(this.responseText).removeClass('hidden'); // Выводим ошибку
+            $('#warn').html(obj.responseText).removeClass('hidden'); // Выводим ошибку
         }
         obj.abort(); // Закрываем соединение
-        if(typeof window[b]==='function') // Вызываем функцию-исполнитель переданного действия (callback)
-            window[b](json,index);
+        if(typeof b==='function') // Вызываем функцию-исполнитель переданного действия (callback)
+            b(json, ...params);
+        else if(typeof window[b]==='function') // Вызываем callback из глобальной переменной
+            window[b](json, ...params);
+        else if(window.smQ && window.smQ[0] && typeof window.smQ[0][b]==='function') // или из smQ
+            window.smQ[0][b](json, ...params);
+        else console.error('Не найдена функция ',b);
     };
     obj.send(vars); // отправили запрос и теперь будем ждать ответ, а пока - выходим
 }

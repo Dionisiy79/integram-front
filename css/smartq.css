@@ -1,99 +1,130 @@
-.table thead th{
+.sq-blocks td{
+    overflow-wrap: anywhere;
+}
+.sq-blocks .table thead th{
     white-space: normal !important;
     vertical-align: top !important;
     text-align: center;
+    position: relative;
 }
-.table tfoot th{
+.sq-blocks .table tfoot th{
     text-align: right;
 }
-tr.no-padding td{
+.sq-blocks tr.no-padding td{
     padding: 0;
 }
-tr.no-padding input{
+.sq-blocks tr.no-padding input{
     width: 100%;
     background-color: #f5f5f5;
     border: 1px solid gray;
 }
-.saving{
+.sq-blocks .saving{
     background-color: #fff5f5;
 }
-.editing{
+.sq-blocks .editing{
     padding: 0 !important;
 }
-.editing-text{
+.sq-blocks .editing-text{
     border: 2px solid #333 !important;
 }
-.switch-pages{
+.sq-blocks .switch-pages{
     width: 30px;
 }
-.new-req{
+.sq-blocks .new-req{
     position: absolute;
 }
-.sq-table th,.page-count-from,.page-count-to{
+.sq-blocks .sq-table th,.page-count-from,.page-count-to{
     font-weight: 500;
 }
-.sq-order-num,.sq-order-dir{
+.sq-blocks .sq-order-num,.sq-order-dir{
     color: #a1a1a1;
     font-weight: 400;
 }
-.calculable,.dub-grouped{
+.sq-blocks .calculable,.dub-grouped{
     background-color: #fafafa;
 }
-.dub-rec{
+.sq-blocks .dub-rec{
     background-color: #fff5f5;
 }
-.ms-link{
+.sq-blocks .ms-link{
 	color: #333;
 }
-.err-msg{
+.sq-blocks .err-msg{
     z-index:1000;
 }
-.new-table-req{
+.sq-blocks .new-table-req{
     margin:-2px;
 }
-.NUMBER{
+.sq-blocks .NUMBER{
     left:0;
 }
-.NO-NUMBER{
+.sq-blocks .NO-NUMBER{
     right:0;
 }
-.select2{
+.sq-blocks .select2{
     padding: .25rem !important;
 }
-.same-object{
+.sq-blocks .same-object{
     background-color:lightgray;
 }
-td[base=SIGNED],td[base=NUMBER]{
+.sq-blocks td[base=SIGNED],td[base=NUMBER]{
     white-space:nowrap;
     text-align-last: right;
 }
-input.inline-edit,textarea.inline-edit{
+.sq-blocks input.inline-edit,textarea.inline-edit{
     outline: none;
     border: none;
 }
-.sub-totals-left{
+.sq-blocks .sub-totals-left{
     border-left: 2px solid darkgreen !important;
 }
-.sub-totals-right{
+.sq-blocks .sub-totals-right{
     border-right: 2px solid darkgreen !important;
 }
-.sub-totals-top{
+.sq-blocks .sub-totals-top{
     border-top: 2px solid darkgreen !important;
 }
-.sub-totals-bottom{
+.sq-blocks .sub-totals-bottom{
     border-bottom: 2px solid darkgreen !important;
 }
-.sub-totals{
+.sq-blocks .sub-totals{
     background-color: #fafafa;
 }
-.sub-totals-tab{
+.sq-blocks .sub-totals-tab{
     z-index:10;
 }
-.right-totals{
+.sq-blocks .right-totals{
     right: 0;
 }
-.tr-sticky{
+.sq-blocks .tr-sticky{
     position:sticky;
     top: 48px;
     z-index: 1;   
 }
+.sq-blocks svg {
+    display: inline;
+}
+.position-relative {
+    position: relative !important;
+}
+.position-absolute {
+    position: absolute !important;
+}
+.resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0;
+    width: 6px;
+    cursor: col-resize;
+}
+.resize-handle:hover,
+.header--being-resized .resize-handle {
+    opacity: 0.5;
+}
+th:hover .resize-handle {
+    opacity: 0.3;
+}
+  
